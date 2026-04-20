@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=yes"
+    />
+    <title>YouTube Clone | Homepage UI</title>
+    <!-- Font Awesome 6 (Free Icons) -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <!-- Google Fonts: Roboto (YouTube-like) -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="youtube.css" />
+  </head>
+  <body>
+    <div class="app">
+      <!-- YouTube Header -->
+      <div class="header">
+        <div class="header-left">
+          <div class="menu-icon"><i class="fas fa-bars"></i></div>
+          <div class="logo">
+            <i class="fab fa-youtube"></i>
+            <span>YouTube<span class="country-code">KE</span></span>
+          </div>
+        </div>
+        <div class="header-center">
+          <input
+            class="search-bar"
+            type="text"
+            placeholder="Search"
+            value="web design tutorials"
+          />
+          <div class="search-btn"><i class="fas fa-search"></i></div>
+          <div class="voice-btn"><i class="fas fa-microphone"></i></div>
+        </div>
+        <div class="header-right">
+          <i class="fas fa-video"></i>
+          <i class="fas fa-bell"></i>
+          <div class="avatar"><img src="images/auth.jpeg" alt="" /></div>
+        </div>
+      </div>
+
+      <div class="main-layout">
+        <!-- Sidebar Navigation (YouTube style) -->
+        <div class="sidebar">
+          <div class="sidebar-nav">
+            <div class="nav-item active-nav">
+              <i class="fas fa-home"></i><span>Home</span>
+            </div>
+            <div class="nav-item">
+              <i class="fas fa-compass"></i><span>Explore</span>
+            </div>
+            <div class="nav-item">
+              <i class="fas fa-film"></i><span>Shorts</span>
+            </div>
+            <div class="nav-item">
+              <i class="fas fa-play-circle"></i><span>Subscriptions</span>
+            </div>
+            <div class="divider"></div>
+            <div class="nav-item">
+              <i class="fas fa-bookmark"></i><span>Library</span>
+            </div>
+            <div class="nav-item">
+              <i class="fas fa-history"></i><span>History</span>
+            </div>
+            <div class="nav-item">
+              <i class="fas fa-thumbs-up"></i><span>Liked videos</span>
+            </div>
+            <div class="divider"></div>
+            <div class="sidebar-section-title">SUBSCRIPTIONS</div>
+            <div class="nav-item">
+              <i class="fas fa-user-circle"></i><span>CodeMaster</span>
+            </div>
+            <div class="nav-item">
+              <i class="fas fa-user-circle"></i><span>TechToday</span>
+            </div>
+            <div class="nav-item">
+              <i class="fas fa-user-circle"></i><span>DesignCourse</span>
+            </div>
+            <div class="divider"></div>
+            <div class="sidebar-section-title">MORE FROM YOUTUBE</div>
+            <div class="nav-item">
+              <i class="fab fa-youtube"></i><span>YouTube Premium</span>
+            </div>
+            <div class="nav-item">
+              <i class="fas fa-gamepad"></i><span>Gaming</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- main content area: chips + video grid -->
+        <div class="content">
+          <div class="chips-row">
+            <div class="chip active">All</div>
+            <div class="chip">Music</div>
+            <div class="chip">Live</div>
+            <div class="chip">Gaming</div>
+            <div class="chip">Web Development</div>
+            <div class="chip">CSS Grid</div>
+            <div class="chip">JavaScript</div>
+            <div class="chip">UI Design</div>
+            <div class="chip">React</div>
+          </div>
+
+          <div class="video-grid">
+            <!-- Video Card 1 -->
+            <div class="video-card">
+              <div class="thumbnail">
+                <img src="images/thumbnail.jpg" alt="thumbnail" />
+                <span class="duration">12:34</span>
+              </div>
+              <div class="video-info">
+                <div class="channel-avatar">
+                  <img src="images/auth.jpeg" alt="" />
+                </div>
+                <div class="video-details">
+                  <h3>
+                    Build a YouTube Clone with HTML & CSS only (Amazing UI)
+                  </h3>
+                  <div class="channel-name">Frontend Mastery</div>
+                  <div class="meta-stats">
+                    <span>1.2M views</span><span>•</span><span>2 days ago</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Video Card 2 -->
+            <div class="video-card">
+              <div class="thumbnail">
+                <img src="images/thumbnail.jpg" alt="thumbnail" />
+                <span class="duration">8:22</span>
+              </div>
+              <div class="video-info">
+                <div class="channel-avatar">
+                  <img src="images/auth2.png" alt="" />
+                </div>
+                <div class="video-details">
+                  <h3>CSS Grid vs Flexbox — Which one should you use?</h3>
+                  <div class="channel-name">Web Simplified</div>
+                  <div class="meta-stats">
+                    <span>890K views</span><span>•</span><span>1 week ago</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Video Card 3 -->
+            <div class="video-card">
+              <div class="thumbnail">
+                <img src="images/thumbnail.jpg" alt="thumbnail" />
+                <span class="duration">20:15</span>
+              </div>
+              <div class="video-info">
+                <div class="channel-avatar"><i class="fas fa-palette"></i></div>
+                <div class="video-details">
+                  <h3>
+                    Modern UI Design Trends 2025 - Dark Mode & Glassmorphism
+                  </h3>
+                  <div class="channel-name">Design Weekly</div>
+                  <div class="meta-stats">
+                    <span>450k views</span><span>•</span><span>5 days ago</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Video Card 4 (Shorts style but still regular) -->
+            <div class="video-card">
+              <div class="thumbnail">
+                <img src="images/thumbnail.jpg" alt="thumbnail" />
+                <span class="duration">5:47</span>
+              </div>
+              <div class="video-info">
+                <div class="channel-avatar">
+                  <img src="images/auth4.png" alt="" />
+                </div>
+                <div class="video-details">
+                  <h3>Top 10 HTML/CSS Animations that blow your mind</h3>
+                  <div class="channel-name">CodeLab</div>
+                  <div class="meta-stats">
+                    <span>2.3M views</span><span>•</span
+                    ><span>3 weeks ago</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Video Card 5 -->
+            <div class="video-card">
+              <div class="thumbnail">
+                <img src="images/thumbnail.jpg" alt="thumbnail" />
+                <span class="duration">15:02</span>
+              </div>
+              <div class="video-info">
+                <div class="channel-avatar">
+                  <i class="fas fa-database"></i>
+                </div>
+                <div class="video-details">
+                  <h3>
+                    Responsive YouTube Clone in Pure CSS - Full Walkthrough
+                  </h3>
+                  <div class="channel-name">Abel Matheka</div>
+                  <div class="meta-stats">
+                    <span>680K views</span><span>•</span
+                    ><span>2 weeks ago</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Video Card 6 -->
+            <div class="video-card">
+              <div class="thumbnail">
+                <img src="images/thumbnail.jpg" alt="thumbnail" />
+                <span class="duration">9:53</span>
+              </div>
+              <div class="video-info">
+                <div class="channel-avatar">
+                  <img src="images/auth6.jpg" alt="" />
+                </div>
+                <div class="video-details">
+                  <h3>JavaScript is dead? New CSS Features you must know</h3>
+                  <div class="channel-name">ATHECH</div>
+                  <div class="meta-stats">
+                    <span>312k views</span><span>•</span><span>1 day ago</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Video Card 7: Gaming related -->
+            <div class="video-card">
+              <div class="thumbnail">
+                <img src="images/thumbnail.jpg" alt="thumbnail" />
+                <span class="duration">32:11</span>
+              </div>
+              <div class="video-info">
+                <div class="channel-avatar"><i class="fas fa-gamepad"></i></div>
+                <div class="video-details">
+                  <h3>Elden Ring DLC — New Gameplay & Boss fights</h3>
+                  <div class="channel-name">GamerZone</div>
+                  <div class="meta-stats">
+                    <span>2.1M views</span><span>•</span
+                    ><span>1 month ago</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Video Card 8 -->
+            <div class="video-card">
+              <div class="thumbnail">
+                <img src="images/thumbnail.jpg" alt="thumbnail" />
+                <span class="duration">14:27</span>
+              </div>
+              <div class="video-info">
+                <div class="channel-avatar">
+                  <i class="fas fa-chalkboard-user"></i>
+                </div>
+                <div class="video-details">
+                  <h3>
+                    Master CSS Grid in 15 minutes — Complete tutorial 2025
+                  </h3>
+                  <div class="channel-name">Dev Ed</div>
+                  <div class="meta-stats">
+                    <span>1.5M views</span><span>•</span><span>4 days ago</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="footer-note">
+            YouTube Clone UI | HTML & CSS only | Responsive design | For
+            demonstration purposes
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
