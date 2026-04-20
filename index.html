@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SportTechies Academy</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      body {
+        margin: 0;
+        font-family: "Roboto", sans-serif;
+        background: #0f172a;
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+      }
+
+      h1 {
+        margin-bottom: 10px;
+      }
+
+      p {
+        margin-bottom: 30px;
+        color: #cbd5f5;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 20px;
+        width: 90%;
+        max-width: 800px;
+      }
+
+      a.card {
+        text-decoration: none;
+        background: #1e293b;
+        padding: 20px;
+        border-radius: 12px;
+        transition: 0.2s ease;
+        border: 1px solid transparent;
+      }
+
+      a.card:hover {
+        transform: translateY(-5px);
+        border: 1px solid #38bdf8;
+      }
+
+      .title {
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 8px;
+      }
+
+      .desc {
+        font-size: 14px;
+        color: #94a3b8;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>SportTechies Academy 🚀</h1>
+    <p>Explore projects and UI builds</p>
+
+    <div class="grid">
+      <a href="/youtube" class="card">
+        <div class="title">YouTube Clone</div>
+        <div class="desc">Homepage UI recreation</div>
+      </a>
+
+      <a href="/school" class="card">
+        <div class="title">School System</div>
+        <div class="desc">Student & course interface</div>
+      </a>
+
+      <a href="/portfolio" class="card">
+        <div class="title">Portfolio</div>
+        <div class="desc">Personal showcase</div>
+      </a>
+    </div>
+  </body>
+</html>
