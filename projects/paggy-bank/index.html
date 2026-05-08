@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Piggy Bank - JS Variables</title>
+  </head>
+  <body>
+    <h1>Piggy Bank</h1>
+    <p>Variable: savings (starts at 0)</p>
+    <p>Open console (F12) to see logs</p>
+
+    <button onclick="console.log('Savings: KES' + savings)">
+      Show savings
+    </button>
+    <button
+      onclick="
+        savings = savings + 1;
+        console.log('Added KES1. Savings: KES' + savings);
+      "
+    >
+      +KES1
+    </button>
+    <button
+      onclick="
+        savings = savings + 5;
+        console.log('Added KES5. Savings: KES' + savings);
+      "
+    >
+      +KES5
+    </button>
+    <button
+      onclick="
+        savings = savings + 10;
+        console.log('Added KES10. Savings: KES' + savings);
+      "
+    >
+      +KES10
+    </button>
+    <button
+      onclick="
+        savings = 0;
+        console.log('Piggy bank broken');
+        console.log('Savings: KES' + savings);
+      "
+    >
+      empty piggy bank
+    </button>
+
+    <script>
+      let savings = 0;
+    </script>
+  </body>
+</html>

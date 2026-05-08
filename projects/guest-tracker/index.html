@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Guest List - JS Variables</title>
+  </head>
+  <body>
+    <h1>Party Guest List</h1>
+    <p>Variable: guests (starts at 0)</p>
+    <p>Open console (F12) to see logs</p>
+
+    <button onclick="console.log('Guests: ' + guests)">Show guests</button>
+    <button
+      onclick="
+        guests = guests + 1;
+        console.log('1 guest arrived. Total: ' + guests);
+      "
+    >
+      +1 guest
+    </button>
+    <button
+      onclick="
+        guests = guests + 2;
+        console.log('2 guests arrived. Total: ' + guests);
+      "
+    >
+      +2 guests
+    </button>
+    <button
+      onclick="
+        guests = guests + 4;
+        console.log('4 guests arrived. Total: ' + guests);
+      "
+    >
+      +4 guests
+    </button>
+    <button
+      onclick="
+        guests = 0;
+        console.log('Party ended');
+        console.log('Guests: ' + guests);
+      "
+    >
+      reset guest list
+    </button>
+
+    <script>
+      let guests = 0;
+    </script>
+  </body>
+</html>
