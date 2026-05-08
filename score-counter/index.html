@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Score Counter - JS Variables</title>
+  </head>
+  <body>
+    <h1>Basketball Score</h1>
+    <p>Variable: score (starts at 0)</p>
+    <p>Open console (F12) to see logs</p>
+
+    <button onclick="console.log('Score: ' + score)">Show score</button>
+    <button
+      onclick="
+        score = score + 2;
+        console.log('Added 2 points. Score: ' + score);
+      "
+    >
+      +2 points
+    </button>
+    <button
+      onclick="
+        score = score + 3;
+        console.log('Added 3 points. Score: ' + score);
+      "
+    >
+      +3 points
+    </button>
+    <button
+      onclick="
+        score = score + 1;
+        console.log('Added 1 point. Score: ' + score);
+      "
+    >
+      Free throw (+1)
+    </button>
+    <button
+      onclick="
+        score = 0;
+        console.log('Score was reset');
+        console.log('Score: ' + score);
+      "
+    >
+      reset score
+    </button>
+
+    <script>
+      let score = 0;
+    </script>
+  </body>
+</html>
