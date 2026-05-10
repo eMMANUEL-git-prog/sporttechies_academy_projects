@@ -2,8 +2,11 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Student Portfolio | [Your Name]</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=yes"
+    />
+    <title>Mirian Cherotich | Student Portfolio</title>
     <!-- Google Fonts -->
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap"
@@ -13,6 +16,11 @@
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <!-- Swiper CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
     />
     <style>
       * {
@@ -27,24 +35,24 @@
         color: #1a1a2e;
         line-height: 1.5;
         scroll-behavior: smooth;
+        overflow-x: hidden;
       }
 
-      /* ===== COLOR VARIABLES (easily customizable) ===== */
+      /* ===== SOLID COLOR VARIABLES (no gradients) ===== */
       :root {
-        --primary: #6366f1; /* Indigo - change this to your favorite color */
-        --primary-dark: #4f46e5;
-        --primary-light: #818cf8;
-        --secondary: #10b981; /* Emerald accent */
+        --primary: #3b82f6;
+        --primary-dark: #2563eb;
+        --primary-light: #60a5fa;
+        --secondary: #10b981;
         --dark: #0f172a;
-        --gray: #64748b;
+        --gray: #475569;
         --light-gray: #f1f5f9;
         --white: #ffffff;
         --shadow:
-          0 10px 25px -5px rgba(0, 0, 0, 0.05),
-          0 8px 10px -6px rgba(0, 0, 0, 0.02);
+          0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
         --shadow-md:
-          0 20px 25px -5px rgba(0, 0, 0, 0.05),
-          0 10px 10px -5px rgba(0, 0, 0, 0.01);
+          0 10px 15px -3px rgba(0, 0, 0, 0.05),
+          0 4px 6px -2px rgba(0, 0, 0, 0.025);
       }
 
       .container {
@@ -53,18 +61,17 @@
         padding: 0 24px;
       }
 
-      /* ===== NAVIGATION ===== */
+      /* ===== NAVIGATION (with side drawer) ===== */
       nav {
         position: fixed;
         top: 0;
         left: 0;
         right: 0;
-        background: rgba(255, 255, 255, 0.95);
+        background: rgba(255, 255, 255, 0.96);
         backdrop-filter: blur(8px);
         z-index: 100;
         padding: 16px 0;
         border-bottom: 1px solid #e2e8f0;
-        transition: all 0.3s;
       }
 
       .nav-container {
@@ -74,19 +81,15 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        flex-wrap: wrap;
-        gap: 16px;
       }
 
       .logo {
-        font-size: 24px;
+        font-size: 26px;
         font-weight: 800;
-        background: linear-gradient(135deg, var(--primary), var(--secondary));
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
+        color: var(--primary);
       }
 
+      /* Desktop nav links */
       .nav-links {
         display: flex;
         gap: 32px;
@@ -104,16 +107,98 @@
         color: var(--primary);
       }
 
+      /* Mobile menu button */
       .mobile-menu-btn {
         display: none;
-        font-size: 24px;
+        font-size: 26px;
         cursor: pointer;
+        background: none;
+        border: none;
+        color: var(--dark);
+        z-index: 102;
+      }
+
+      /* Side drawer overlay */
+      .drawer-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 200;
+        visibility: hidden;
+        opacity: 0;
+        transition:
+          visibility 0.3s,
+          opacity 0.3s ease;
+      }
+
+      .drawer-overlay.active {
+        visibility: visible;
+        opacity: 1;
+      }
+
+      /* Side drawer menu */
+      .side-drawer {
+        position: fixed;
+        top: 0;
+        right: -280px;
+        width: 280px;
+        height: 100%;
+        background: white;
+        box-shadow: -5px 0 20px rgba(0, 0, 0, 0.1);
+        z-index: 201;
+        padding: 32px 24px;
+        transition: right 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+      }
+
+      .side-drawer.open {
+        right: 0;
+      }
+
+      .drawer-header {
+        display: flex;
+        justify-content: flex-end;
+      }
+
+      .close-drawer {
+        background: none;
+        border: none;
+        font-size: 28px;
+        cursor: pointer;
+        color: var(--gray);
+      }
+
+      .drawer-links {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        list-style: none;
+      }
+
+      .drawer-links a {
+        text-decoration: none;
+        font-size: 20px;
+        font-weight: 600;
+        color: var(--dark);
+        transition: 0.2s;
+        display: block;
+        padding: 8px 0;
+      }
+
+      .drawer-links a:hover {
+        color: var(--primary);
+        transform: translateX(5px);
       }
 
       /* ===== HERO SECTION ===== */
       .hero {
-        padding: 120px 0 80px;
-        background: linear-gradient(135deg, #f8fafc 0%, #eef2ff 100%);
+        padding: 130px 0 80px;
+        background: #eef2ff;
       }
 
       .hero-content {
@@ -130,7 +215,7 @@
 
       .hero-badge {
         display: inline-block;
-        background: rgba(99, 102, 241, 0.1);
+        background: rgba(59, 130, 246, 0.12);
         padding: 6px 14px;
         border-radius: 40px;
         font-size: 13px;
@@ -201,26 +286,23 @@
         color: white;
       }
 
-      .hero-avatar {
-        flex: 0.8;
-        display: flex;
-        justify-content: center;
-      }
-
       .avatar-circle {
-        width: 280px;
-        height: 280px;
-        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        width: 260px;
+        height: 260px;
+        background: var(--white);
         border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
         box-shadow: var(--shadow-md);
+        overflow: hidden;
+        border: 4px solid var(--primary);
       }
 
-      .avatar-circle i {
-        font-size: 120px;
-        color: white;
+      .avatar-circle img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
       }
 
       /* ===== SKILLS SECTION ===== */
@@ -262,7 +344,7 @@
       .skill-card:hover {
         transform: translateY(-5px);
         border-color: var(--primary-light);
-        box-shadow: 0 20px 30px -12px rgba(99, 102, 241, 0.2);
+        box-shadow: 0 20px 30px -12px rgba(59, 130, 246, 0.2);
       }
 
       .skill-card i {
@@ -276,39 +358,44 @@
         font-weight: 600;
       }
 
-      /* ===== PROJECTS SECTION ===== */
-      .projects-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-        gap: 32px;
-      }
-
-      .project-card {
-        background: var(--white);
-        border-radius: 24px;
+      /* Swiper container customization */
+      .skills-swiper,
+      .projects-swiper {
+        display: none;
+        width: 100%;
         overflow: hidden;
-        transition: 0.3s;
-        box-shadow: var(--shadow);
-        border: 1px solid #e2e8f0;
+        padding-bottom: 40px; /* space for pagination below */
       }
 
-      .project-card:hover {
-        transform: translateY(-8px);
-        box-shadow: var(--shadow-md);
+      .swiper-pagination {
+        position: relative;
+        bottom: -10px;
+        margin-top: 20px;
       }
 
+      .swiper-pagination-bullet-active {
+        background: var(--primary) !important;
+      }
+
+      /* Project image */
       .project-image {
-        height: 200px;
-        background: linear-gradient(
-          135deg,
-          var(--primary-light),
-          var(--primary-dark)
-        );
+        height: 210px;
+        background-color: #d9e6f5;
+        overflow: hidden;
         display: flex;
         align-items: center;
         justify-content: center;
-        color: white;
-        font-size: 48px;
+      }
+
+      .project-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: 0.3s;
+      }
+
+      .project-card:hover .project-image img {
+        transform: scale(1.02);
       }
 
       .project-info {
@@ -361,7 +448,27 @@
         color: var(--primary-dark);
       }
 
-      /* ===== ABOUT SECTION ===== */
+      .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: 32px;
+      }
+
+      .project-card {
+        background: var(--white);
+        border-radius: 24px;
+        overflow: hidden;
+        transition: 0.3s;
+        box-shadow: var(--shadow);
+        border: 1px solid #e2e8f0;
+      }
+
+      .project-card:hover {
+        transform: translateY(-8px);
+        box-shadow: var(--shadow-md);
+      }
+
+      /* About & contact styles remain */
       .about-content {
         display: flex;
         gap: 48px;
@@ -401,12 +508,6 @@
         color: var(--primary);
       }
 
-      .stat-label {
-        font-size: 14px;
-        color: var(--gray);
-      }
-
-      /* ===== CONTACT SECTION ===== */
       .contact-container {
         display: flex;
         gap: 48px;
@@ -497,15 +598,9 @@
       .form-group input:focus,
       .form-group textarea:focus {
         border-color: var(--primary);
-        box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
       }
 
-      .form-group textarea {
-        resize: vertical;
-        min-height: 120px;
-      }
-
-      /* ===== FOOTER ===== */
       footer {
         background: var(--dark);
         color: white;
@@ -522,21 +617,13 @@
         font-size: 14px;
       }
 
-      /* ===== RESPONSIVE ===== */
+      /* Responsive */
       @media (max-width: 768px) {
         .mobile-menu-btn {
           display: block;
         }
         .nav-links {
           display: none;
-          width: 100%;
-          flex-direction: column;
-          align-items: center;
-          gap: 16px;
-          padding: 20px 0;
-        }
-        .nav-links.active {
-          display: flex;
         }
         .hero-text h1 {
           font-size: 36px;
@@ -545,8 +632,13 @@
           width: 200px;
           height: 200px;
         }
-        .avatar-circle i {
-          font-size: 80px;
+        .skills-grid,
+        .projects-grid {
+          display: none;
+        }
+        .skills-swiper,
+        .projects-swiper {
+          display: block;
         }
         .section-title {
           font-size: 28px;
@@ -561,17 +653,13 @@
           padding: 0 16px;
         }
         .hero {
-          padding: 100px 0 60px;
-        }
-        .projects-grid {
-          grid-template-columns: 1fr;
+          padding: 110px 0 60px;
         }
         .about-stats {
           grid-template-columns: 1fr;
         }
       }
 
-      /* Custom scrollbar */
       ::-webkit-scrollbar {
         width: 8px;
       }
@@ -587,11 +675,15 @@
   <body>
     <nav>
       <div class="nav-container">
-        <div class="logo">[YourName]</div>
-        <div class="mobile-menu-btn" id="mobileMenuBtn">
+        <div class="logo">Mirian Cherotich</div>
+        <button
+          class="mobile-menu-btn"
+          id="openDrawerBtn"
+          aria-label="Open menu"
+        >
           <i class="fas fa-bars"></i>
-        </div>
-        <ul class="nav-links" id="navLinks">
+        </button>
+        <ul class="nav-links">
           <li><a href="#home">Home</a></li>
           <li><a href="#skills">Skills</a></li>
           <li><a href="#projects">Projects</a></li>
@@ -600,6 +692,23 @@
         </ul>
       </div>
     </nav>
+
+    <!-- Side drawer overlay & drawer -->
+    <div class="drawer-overlay" id="drawerOverlay"></div>
+    <div class="side-drawer" id="sideDrawer">
+      <div class="drawer-header">
+        <button class="close-drawer" id="closeDrawerBtn">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <ul class="drawer-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
 
     <main>
       <!-- Hero Section -->
@@ -610,7 +719,7 @@
               <i class="fas fa-code"></i> Student Developer
             </div>
             <h1>
-              Hi, I'm <span>Alex Morgan</span><br />Creative Developer &
+              Hi, I'm <span>Mirian Cherotich</span><br />Creative Developer &
               Designer
             </h1>
             <p>
@@ -628,7 +737,10 @@
           </div>
           <div class="hero-avatar">
             <div class="avatar-circle">
-              <i class="fas fa-user-astronaut"></i>
+              <img
+                src="/projects/portfolio/images/mirian.jpeg"
+                alt="Mirian Cherotich profile"
+              />
             </div>
           </div>
         </div>
@@ -639,6 +751,7 @@
         <div class="container">
           <h2 class="section-title">Tech Stack & Skills</h2>
           <p class="section-sub">Tools and technologies I work with daily</p>
+
           <div class="skills-grid">
             <div class="skill-card">
               <i class="fab fa-html5"></i>
@@ -656,10 +769,10 @@
               <i class="fab fa-react"></i>
               <h3>React</h3>
             </div>
-            <div class="skill-card">
+            <!-- <div class="skill-card">
               <i class="fab fa-python"></i>
               <h3>Python</h3>
-            </div>
+            </div> -->
             <div class="skill-card">
               <i class="fab fa-git-alt"></i>
               <h3>Git</h3>
@@ -673,10 +786,65 @@
               <h3>Figma</h3>
             </div>
           </div>
+
+          <!-- Mobile Swiper with autoplay -->
+          <div class="skills-swiper swiper">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <div class="skill-card">
+                  <i class="fab fa-html5"></i>
+                  <h3>HTML5</h3>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="skill-card">
+                  <i class="fab fa-css3-alt"></i>
+                  <h3>CSS3</h3>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="skill-card">
+                  <i class="fab fa-js"></i>
+                  <h3>JavaScript</h3>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="skill-card">
+                  <i class="fab fa-react"></i>
+                  <h3>React</h3>
+                </div>
+              </div>
+              <!-- <div class="swiper-slide">
+                <div class="skill-card">
+                  <i class="fab fa-python"></i>
+                  <h3>Python</h3>
+                </div>
+              </div> -->
+              <div class="swiper-slide">
+                <div class="skill-card">
+                  <i class="fab fa-git-alt"></i>
+                  <h3>Git</h3>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="skill-card">
+                  <i class="fas fa-database"></i>
+                  <h3>SQL</h3>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="skill-card">
+                  <i class="fab fa-figma"></i>
+                  <h3>Figma</h3>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-pagination"></div>
+          </div>
         </div>
       </section>
 
-      <!-- Projects Section -->
+      <!-- Projects Section with real images + autoplay slider -->
       <section
         id="projects"
         class="section"
@@ -685,9 +853,15 @@
         <div class="container">
           <h2 class="section-title">Featured Projects</h2>
           <p class="section-sub">Some of my best work — click to explore</p>
+
           <div class="projects-grid">
             <div class="project-card">
-              <div class="project-image"><i class="fas fa-store"></i></div>
+              <div class="project-image">
+                <img
+                  src="https://images.unsplash.com/photo-1556742031-c6961e8560b0?w=600&h=400&fit=crop"
+                  alt="E-commerce"
+                />
+              </div>
               <div class="project-info">
                 <h3>E-Commerce Platform</h3>
                 <p>
@@ -695,20 +869,24 @@
                   filtering.
                 </p>
                 <div class="project-tags">
-                  <span class="tag">React</span>
-                  <span class="tag">Node.js</span>
-                  <span class="tag">MongoDB</span>
+                  <span class="tag">React</span><span class="tag">Node.js</span
+                  ><span class="tag">MongoDB</span>
                 </div>
                 <div class="project-links">
-                  <a href="#"><i class="fab fa-github"></i> Code</a>
-                  <a href="#"
+                  <a href="#"><i class="fab fa-github"></i> Code</a
+                  ><a href="#"
                     ><i class="fas fa-external-link-alt"></i> Live Demo</a
                   >
                 </div>
               </div>
             </div>
             <div class="project-card">
-              <div class="project-image"><i class="fas fa-chart-line"></i></div>
+              <div class="project-image">
+                <img
+                  src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop"
+                  alt="Analytics"
+                />
+              </div>
               <div class="project-info">
                 <h3>Analytics Dashboard</h3>
                 <p>
@@ -716,20 +894,24 @@
                   charts.
                 </p>
                 <div class="project-tags">
-                  <span class="tag">Chart.js</span>
-                  <span class="tag">API</span>
-                  <span class="tag">Tailwind</span>
+                  <span class="tag">Chart.js</span><span class="tag">API</span
+                  ><span class="tag">Tailwind</span>
                 </div>
                 <div class="project-links">
-                  <a href="#"><i class="fab fa-github"></i> Code</a>
-                  <a href="#"
+                  <a href="#"><i class="fab fa-github"></i> Code</a
+                  ><a href="#"
                     ><i class="fas fa-external-link-alt"></i> Live Demo</a
                   >
                 </div>
               </div>
             </div>
             <div class="project-card">
-              <div class="project-image"><i class="fas fa-tasks"></i></div>
+              <div class="project-image">
+                <img
+                  src="https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=600&h=400&fit=crop"
+                  alt="Task Manager"
+                />
+              </div>
               <div class="project-info">
                 <h3>Task Manager App</h3>
                 <p>
@@ -737,18 +919,97 @@
                   collaboration.
                 </p>
                 <div class="project-tags">
-                  <span class="tag">Vue.js</span>
-                  <span class="tag">Firebase</span>
-                  <span class="tag">SCSS</span>
+                  <span class="tag">Vue.js</span
+                  ><span class="tag">Firebase</span
+                  ><span class="tag">SCSS</span>
                 </div>
                 <div class="project-links">
-                  <a href="#"><i class="fab fa-github"></i> Code</a>
-                  <a href="#"
+                  <a href="#"><i class="fab fa-github"></i> Code</a
+                  ><a href="#"
                     ><i class="fas fa-external-link-alt"></i> Live Demo</a
                   >
                 </div>
               </div>
             </div>
+          </div>
+
+          <!-- Mobile projects swiper with autoplay and pagination below -->
+          <div class="projects-swiper swiper">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <div class="project-card">
+                  <div class="project-image">
+                    <img
+                      src="https://images.unsplash.com/photo-1556742031-c6961e8560b0?w=600&h=400&fit=crop"
+                      alt="E-Commerce"
+                    />
+                  </div>
+                  <div class="project-info">
+                    <h3>E-Commerce Platform</h3>
+                    <p>Full-featured online store with cart.</p>
+                    <div class="project-tags">
+                      <span class="tag">React</span
+                      ><span class="tag">Node.js</span>
+                    </div>
+                    <div class="project-links">
+                      <a href="#"><i class="fab fa-github"></i> Code</a
+                      ><a href="#"
+                        ><i class="fas fa-external-link-alt"></i> Demo</a
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="project-card">
+                  <div class="project-image">
+                    <img
+                      src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop"
+                      alt="Analytics"
+                    />
+                  </div>
+                  <div class="project-info">
+                    <h3>Analytics Dashboard</h3>
+                    <p>Real-time data visualization & charts.</p>
+                    <div class="project-tags">
+                      <span class="tag">Chart.js</span
+                      ><span class="tag">API</span>
+                    </div>
+                    <div class="project-links">
+                      <a href="#"><i class="fab fa-github"></i> Code</a
+                      ><a href="#"
+                        ><i class="fas fa-external-link-alt"></i> Demo</a
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="project-card">
+                  <div class="project-image">
+                    <img
+                      src="https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=600&h=400&fit=crop"
+                      alt="Task Manager"
+                    />
+                  </div>
+                  <div class="project-info">
+                    <h3>Task Manager App</h3>
+                    <p>Drag-and-drop, deadlines, team collaboration.</p>
+                    <div class="project-tags">
+                      <span class="tag">Vue.js</span
+                      ><span class="tag">Firebase</span>
+                    </div>
+                    <div class="project-links">
+                      <a href="#"><i class="fab fa-github"></i> Code</a
+                      ><a href="#"
+                        ><i class="fas fa-external-link-alt"></i> Demo</a
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-pagination"></div>
           </div>
         </div>
       </section>
@@ -759,9 +1020,9 @@
           <div class="about-text">
             <h2 class="section-title" style="text-align: left">About Me</h2>
             <p>
-              I'm a passionate student developer currently pursuing Computer
-              Science. I love turning ideas into reality through code and
-              creating meaningful digital experiences.
+              I'm Mirian Cherotich, a passionate student developer currently
+              pursuing Computer Science. I love turning ideas into reality
+              through code and creating meaningful digital experiences.
             </p>
             <p>
               When I'm not coding, you'll find me exploring new technologies,
@@ -822,16 +1083,14 @@
               </p>
               <div class="contact-details">
                 <div class="contact-item">
-                  <i class="fas fa-envelope"></i>
-                  <span>alex.morgan@student.com</span>
+                  <i class="fas fa-envelope"></i
+                  ><span>mirian@sporttechies.com</span>
                 </div>
                 <div class="contact-item">
-                  <i class="fas fa-phone"></i>
-                  <span>+254 700 123 456</span>
+                  <i class="fas fa-phone"></i><span>+254 728 741 690</span>
                 </div>
                 <div class="contact-item">
-                  <i class="fas fa-map-marker-alt"></i>
-                  <span>Nairobi, Kenya</span>
+                  <i class="fas fa-map-marker-alt"></i><span>Iten, Kenya</span>
                 </div>
               </div>
               <div class="social-links">
@@ -867,44 +1126,102 @@
 
     <footer>
       <div class="container footer-content">
-        <p>
-          © 2026 [Your Name] | Built with
-          <i class="fas fa-heart" style="color: #ef4444"></i> using HTML & CSS
-        </p>
+        <p>© 2026 Mirian Cherotich</p>
         <p style="margin-top: 12px; font-size: 12px">
-          Student Portfolio — Open to opportunities
+          Student Portfolio | Open to opportunities
         </p>
       </div>
     </footer>
 
-    <!-- Mobile Menu Toggle Script -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
-      const mobileBtn = document.getElementById("mobileMenuBtn");
-      const navLinks = document.getElementById("navLinks");
+      // Side drawer logic
+      const openBtn = document.getElementById("openDrawerBtn");
+      const drawerOverlay = document.getElementById("drawerOverlay");
+      const sideDrawer = document.getElementById("sideDrawer");
+      const closeDrawerBtn = document.getElementById("closeDrawerBtn");
 
-      mobileBtn.addEventListener("click", () => {
-        navLinks.classList.toggle("active");
-      });
+      function openDrawer() {
+        sideDrawer.classList.add("open");
+        drawerOverlay.classList.add("active");
+        document.body.style.overflow = "hidden";
+      }
+      function closeDrawer() {
+        sideDrawer.classList.remove("open");
+        drawerOverlay.classList.remove("active");
+        document.body.style.overflow = "";
+      }
+      if (openBtn) openBtn.addEventListener("click", openDrawer);
+      if (closeDrawerBtn) closeDrawerBtn.addEventListener("click", closeDrawer);
+      drawerOverlay.addEventListener("click", closeDrawer);
 
-      // Close mobile menu when clicking a link
-      document.querySelectorAll(".nav-links a").forEach((link) => {
-        link.addEventListener("click", () => {
-          navLinks.classList.remove("active");
-        });
-      });
-
-      // Smooth scroll for anchor links
-      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-        anchor.addEventListener("click", function (e) {
-          e.preventDefault();
-          const target = document.querySelector(this.getAttribute("href"));
-          if (target) {
-            target.scrollIntoView({ behavior: "smooth" });
+      // Close drawer when clicking on a drawer link
+      document.querySelectorAll(".drawer-links a").forEach((link) => {
+        link.addEventListener("click", (e) => {
+          closeDrawer();
+          // smooth scroll is handled globally, but we do it anyway
+          const targetId = link.getAttribute("href");
+          if (targetId && targetId !== "#") {
+            e.preventDefault();
+            const targetEl = document.querySelector(targetId);
+            if (targetEl) targetEl.scrollIntoView({ behavior: "smooth" });
           }
         });
       });
 
-      // Simple form alert (just for demo)
+      // Smooth scroll for all anchor links (including desktop)
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          const targetId = this.getAttribute("href");
+          if (targetId === "#") return;
+          const target = document.querySelector(targetId);
+          if (target) {
+            e.preventDefault();
+            target.scrollIntoView({ behavior: "smooth" });
+            if (sideDrawer.classList.contains("open")) closeDrawer();
+          }
+        });
+      });
+
+      // === SWIPER INIT with AUTOPLAY and pagination BELOW ===
+      // Skills Swiper (only on mobile but init anyway)
+      if (document.querySelector(".skills-swiper")) {
+        new Swiper(".skills-swiper", {
+          slidesPerView: 2,
+          spaceBetween: 16,
+          loop: true,
+          autoplay: {
+            delay: 2200,
+            disableOnInteraction: false,
+            pauseOnMouseEnter: true,
+          },
+          pagination: { el: ".swiper-pagination", clickable: true },
+          breakpoints: {
+            480: { slidesPerView: 2.5 },
+            640: { slidesPerView: 3 },
+          },
+        });
+      }
+      // Projects Swiper with autoplay
+      if (document.querySelector(".projects-swiper")) {
+        new Swiper(".projects-swiper", {
+          slidesPerView: 1,
+          spaceBetween: 20,
+          loop: true,
+          autoplay: {
+            delay: 2800,
+            disableOnInteraction: false,
+            pauseOnMouseEnter: true,
+          },
+          pagination: { el: ".swiper-pagination", clickable: true },
+          breakpoints: {
+            560: { slidesPerView: 1.5 },
+            768: { slidesPerView: 2 },
+          },
+        });
+      }
+
+      // Contact form alert
       const form = document.getElementById("contactForm");
       if (form) {
         form.addEventListener("submit", (e) => {
