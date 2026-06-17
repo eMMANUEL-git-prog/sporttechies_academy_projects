@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Buttons</title>
+    <style>
+      /* FACEBOOK LOGIN */
+      .facebook-btn {
+        padding: 12px 20px;
+        border: none;
+        border-radius: 6px;
+        background: #1877f2;
+        color: #ffffff;
+        margin-right: 12px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+      .facebook-btn:hover {
+        background: #166fe5;
+      }
+      .facebook-btn:active {
+        transform: scale(0.97);
+      }
+
+      /* AMAZON ADD TO CART */
+      .amazon-btn {
+        padding: 12px 36px;
+        border: none;
+        border-radius: 20px;
+        background: #ffd814;
+        color: #0f1111;
+        margin-right: 12px;
+        font-size: 14px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+      .amazon-btn:hover {
+        background: #f7ca00;
+        box-shadow: 0 4px 15px rgba(255, 216, 20, 0.5);
+      }
+      .amazon-btn:active {
+        transform: scale(0.96);
+      }
+
+      /* YOUTUBE SUBSCRIBE */
+      .youtube-btn {
+        padding: 12px 20px;
+        border: none;
+        border-radius: 30px;
+        background: #0f0f0f;
+        color: #ffffff;
+        margin-right: 12px;
+        font-size: 14px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+      .youtube-btn:hover {
+        background: #272727;
+      }
+      .youtube-btn:active {
+        transform: scale(0.95);
+      }
+
+      /* DISCORD JOIN */
+      .discord-btn {
+        padding: 12px 28px;
+        border: none;
+        border-radius: 40px;
+        background: #5865f2;
+        color: #ffffff;
+        margin-right: 12px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+      .discord-btn:hover {
+        background: #4752c4;
+        box-shadow: 0 8px 25px rgba(88, 101, 242, 0.4);
+        transform: translateY(-2px);
+      }
+      .discord-btn:active {
+        transform: translateY(0px) scale(0.97);
+        box-shadow: 0 4px 15px rgba(88, 101, 242, 0.2);
+      }
+
+      /* OUTLINE BUTTON - White bg, colored border, swaps on hover */
+      .outline-btn {
+        padding: 10px 24px;
+        border: 2px solid #1877f2;
+        border-radius: 6px;
+        background: #ffffff;
+        color: #1877f2;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+      .outline-btn:hover {
+        background: #1877f2;
+        color: #ffffff;
+      }
+      .outline-btn:active {
+        transform: scale(0.97);
+      }
+    </style>
+  </head>
+  <body>
+    <button class="facebook-btn">Log In</button>
+    <button class="amazon-btn">Add to Cart</button>
+    <button class="youtube-btn">Subscribe</button>
+    <button class="discord-btn">Join</button>
+    <button class="outline-btn">Sign Up</button>
+  </body>
+</html>
