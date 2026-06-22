@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Text & Buttons - Event</title>
+    <style>
+      p {
+        font-family: Arial;
+        margin-top: 0;
+        margin-bottom: 0;
+      }
+
+      .event-title {
+        font-weight: bold;
+        font-size: 24px;
+        width: 350px;
+        line-height: 30px;
+        margin-bottom: 10px;
+        color: rgb(0, 0, 0);
+      }
+
+      .date {
+        color: rgb(96, 96, 96);
+        font-size: 14px;
+        margin-bottom: 14px;
+      }
+
+      .location {
+        color: rgb(220, 40, 40);
+        font-size: 15px;
+        margin-bottom: 16px;
+      }
+
+      .detail {
+        color: rgb(50, 50, 50);
+        font-size: 14px;
+        width: 350px;
+        line-height: 22px;
+        margin-bottom: 20px;
+      }
+
+      .ticket {
+        font-size: 22px;
+        font-weight: bold;
+        color: rgb(0, 0, 0);
+        margin-bottom: 20px;
+      }
+
+      .ticket span {
+        font-size: 14px;
+        font-weight: normal;
+        color: rgb(96, 96, 96);
+        margin-left: 10px;
+      }
+
+      .btn-register {
+        padding: 12px 28px;
+        border: none;
+        border-radius: 8px;
+        background: #1e7e34;
+        color: #ffffff;
+        font-size: 15px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        margin-right: 14px;
+      }
+
+      .btn-register:hover {
+        background: #166b2b;
+      }
+
+      .btn-register:active {
+        transform: scale(0.96);
+      }
+
+      .btn-save {
+        padding: 12px 28px;
+        border: 2px solid #1e7e34;
+        border-radius: 8px;
+        background: transparent;
+        color: #1e7e34;
+        font-size: 15px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+
+      .btn-save:hover {
+        background: #1e7e34;
+        color: #ffffff;
+      }
+
+      .btn-save:active {
+        transform: scale(0.96);
+      }
+
+      .notice {
+        font-size: 13px;
+        background-color: #f5a623;
+        color: #000000;
+        padding-top: 14px;
+        padding-bottom: 14px;
+        text-align: center;
+        margin-top: 26px;
+        width: 350px;
+        font-weight: 600;
+      }
+
+      .notice-link {
+        cursor: pointer;
+        color: #d0021b;
+        font-weight: bold;
+      }
+
+      .notice-link:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <p class="event-title">Nairobi Tech Summit 2026</p>
+
+    <p class="date">August 20-22, 2026 &middot; 8:00 AM - 5:00 PM</p>
+
+    <p class="location">
+      Nairobi, Kenya &bull; Kenyatta International Convention Centre
+    </p>
+
+    <p class="detail">
+      East Africa's largest tech event. Connect with 800+ developers, founders,
+      and investors. Featured speakers from Google, Safaricom, and SportTechies.
+    </p>
+
+    <p class="ticket">Ksh 12,500 <span>Regular Ksh 22,500</span></p>
+
+    <button class="btn-register">Register Now</button>
+    <button class="btn-save">Save to Calendar</button>
+
+    <p class="notice">
+      &#9888; Only 32 early bird tickets left &middot;
+      <span class="notice-link">View speakers &rarr;</span>
+    </p>
+  </body>
+</html>
