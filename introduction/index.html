@@ -1,0 +1,972 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=yes"
+    />
+    <title>Intro to Web Dev | SportTechies Innovation Academy</title>
+    <!-- Font Awesome 6 (Free) -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family:
+          "Segoe UI", Roboto, "Helvetica Neue", system-ui, sans-serif;
+        background: #1a1a1a;
+        color: #0f172a;
+        overflow: hidden;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      /* ----- ACADEMY HEADER (logo + theme) ----- */
+      .academy-header {
+        background: #1a1a1a;
+        padding: 0.5rem 2rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        flex-wrap: wrap;
+        border-bottom: 4px solid #d32f2f;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        flex-shrink: 0;
+      }
+
+      .logo-img {
+        height: 50px;
+        width: auto;
+        object-fit: contain;
+        background: transparent;
+        filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+      }
+
+      .logo-text {
+        font-weight: 700;
+        color: white;
+        line-height: 1.2;
+      }
+      .logo-text .line1 {
+        font-size: 1.1rem;
+        font-weight: 800;
+        color: #4caf50;
+        letter-spacing: 0.5px;
+      }
+      .logo-text .line2 {
+        font-size: 0.8rem;
+        font-weight: 400;
+        color: #bdbdbd;
+        letter-spacing: 0.3px;
+      }
+      .academy-tag {
+        margin-left: auto;
+        background: #d32f2f;
+        padding: 4px 14px;
+        border-radius: 30px;
+        font-size: 0.7rem;
+        font-weight: 600;
+        color: white;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      /* slides container */
+      .slides-container {
+        flex: 1;
+        position: relative;
+        overflow: hidden;
+        background: #f5f7f5;
+      }
+
+      .slide {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        visibility: hidden;
+        transition:
+          opacity 0.4s ease-in-out,
+          visibility 0.4s;
+        background: #f8faf8;
+        overflow-y: auto;
+        padding: 1.8rem 2.2rem;
+      }
+
+      .slide.active {
+        opacity: 1;
+        visibility: visible;
+        z-index: 10;
+      }
+
+      .slide-content {
+        max-width: 1100px;
+        margin: 0 auto;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        min-height: 100%;
+      }
+
+      h1 {
+        font-size: 3.2rem;
+        font-weight: 800;
+        color: #1a1a1a;
+        margin-bottom: 1rem;
+      }
+      h1 .accent-red {
+        color: #d32f2f;
+      }
+      h1 .accent-green {
+        color: #2e7d32;
+      }
+
+      h2 {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #1a1a1a;
+        border-left: 6px solid #d32f2f;
+        padding-left: 1rem;
+        margin: 1rem 0 1rem 0;
+      }
+      h2 i {
+        color: #d32f2f;
+        margin-right: 0.5rem;
+      }
+
+      h3 {
+        font-size: 1.4rem;
+        font-weight: 600;
+        color: #2e7d32;
+        margin-top: 0.8rem;
+        margin-bottom: 0.5rem;
+      }
+      h3 i {
+        color: #2e7d32;
+        margin-right: 0.5rem;
+      }
+
+      p,
+      li,
+      .text-block {
+        font-size: 1.2rem;
+        line-height: 1.45;
+        color: #1e293b;
+        margin-bottom: 0.75rem;
+      }
+
+      ul,
+      ol {
+        margin: 0.5rem 0 1rem 1.8rem;
+      }
+
+      li {
+        margin: 0.4rem 0;
+      }
+      li i {
+        color: #2e7d32;
+        margin-right: 0.6rem;
+        width: 1.2rem;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        background: white;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        margin: 1rem 0;
+      }
+
+      th,
+      td {
+        border: 1px solid #d0d7d0;
+        padding: 12px 16px;
+        text-align: left;
+        font-size: 1rem;
+      }
+
+      th {
+        background: #1a1a1a;
+        font-weight: 700;
+        color: white;
+      }
+      th i {
+        margin-right: 0.5rem;
+        color: #4caf50;
+      }
+      td:first-child {
+        font-weight: 600;
+        color: #1a1a1a;
+      }
+
+      .tech-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 1rem;
+        margin: 1.2rem 0;
+      }
+
+      .tech-card {
+        background: white;
+        border-radius: 16px;
+        padding: 1rem 1.2rem;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+        border-left: 5px solid #d32f2f;
+        transition: 0.1s ease;
+      }
+      .tech-card.green-border {
+        border-left-color: #2e7d32;
+      }
+      .tech-card.black-border {
+        border-left-color: #1a1a1a;
+      }
+      .tech-card i {
+        margin-right: 0.5rem;
+        color: #d32f2f;
+      }
+      .tech-card.green-border i {
+        color: #2e7d32;
+      }
+      .tech-card.black-border i {
+        color: #1a1a1a;
+      }
+
+      .tech-card strong {
+        font-size: 1.3rem;
+        color: #1a1a1a;
+        display: block;
+        margin-bottom: 0.3rem;
+      }
+
+      .badge {
+        background: #e8f5e9;
+        color: #1b5e20;
+        border-radius: 40px;
+        padding: 0.2rem 0.9rem;
+        font-size: 0.75rem;
+        font-weight: 600;
+        display: inline-block;
+      }
+      .badge-red {
+        background: #ffebee;
+        color: #b71c1c;
+      }
+
+      .footer-nav {
+        background: #1a1a1a;
+        padding: 0.7rem 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-top: 2px solid #d32f2f;
+        flex-shrink: 0;
+      }
+
+      button {
+        background: #d32f2f;
+        border: none;
+        color: white;
+        font-size: 1rem;
+        font-weight: 700;
+        padding: 8px 20px;
+        border-radius: 40px;
+        cursor: pointer;
+        transition: 0.2s;
+        font-family: inherit;
+      }
+      button i {
+        margin: 0 0.3rem;
+      }
+
+      button:hover {
+        background: #b71c1c;
+        transform: scale(0.96);
+      }
+
+      button:disabled {
+        background: #555555;
+        cursor: not-allowed;
+        transform: none;
+        color: #aaaaaa;
+      }
+
+      .slide-counter {
+        font-size: 0.85rem;
+        background: #2e7d32;
+        padding: 6px 16px;
+        border-radius: 40px;
+        color: white;
+        font-weight: 500;
+      }
+      .slide-counter i {
+        margin-right: 0.4rem;
+      }
+
+      .note {
+        background: #e8f5e9;
+        border-left: 4px solid #2e7d32;
+        padding: 1rem;
+        border-radius: 14px;
+        margin: 1rem 0;
+      }
+      .note i {
+        color: #2e7d32;
+        margin-right: 0.5rem;
+      }
+      .note-red {
+        background: #ffebee;
+        border-left-color: #d32f2f;
+      }
+      .note-red i {
+        color: #d32f2f;
+        margin-right: 0.5rem;
+      }
+
+      hr {
+        margin: 1rem 0;
+        border: 0;
+        height: 2px;
+        background: #d32f2f;
+      }
+
+      .title-academy {
+        font-size: 1.2rem;
+        color: #2e7d32;
+        font-weight: 600;
+        letter-spacing: 1px;
+      }
+
+      .icon-large {
+        font-size: 2.5rem;
+        color: #d32f2f;
+        margin-right: 0.5rem;
+      }
+      .icon-large.green {
+        color: #2e7d32;
+      }
+
+      @media (max-width: 680px) {
+        .slide {
+          padding: 1rem;
+        }
+        h1 {
+          font-size: 2rem;
+        }
+        h2 {
+          font-size: 1.5rem;
+        }
+        p,
+        li,
+        .text-block {
+          font-size: 1rem;
+        }
+        .academy-header {
+          padding: 0.4rem 1rem;
+        }
+        .logo-img {
+          height: 36px;
+        }
+        .logo-text .line1 {
+          font-size: 0.85rem;
+        }
+        .logo-text .line2 {
+          font-size: 0.65rem;
+        }
+        .academy-tag {
+          font-size: 0.6rem;
+          padding: 2px 10px;
+        }
+        .icon-large {
+          font-size: 1.8rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- HEADER with logo image -->
+    <div class="academy-header">
+      <img
+        src="1000095389.jpg"
+        alt="SportTechies Innovation Academy Logo"
+        class="logo-img"
+        onerror="this.style.display = 'none'"
+      />
+      <div class="logo-text">
+        <div class="line1">
+          <i class="fas fa-code" style="color: #4caf50; margin-right: 6px"></i
+          >SPORTTECHIES INNOVATION ACADEMY
+        </div>
+        <div class="line2">
+          <i class="fas fa-graduation-cap" style="margin-right: 4px"></i> SIA ·
+          Code • Create • Innovate
+        </div>
+      </div>
+      <div class="academy-tag"><i class="fas fa-bolt"></i> SIA</div>
+    </div>
+
+    <div class="slides-container" id="slidesContainer">
+      <!-- SLIDE 1 - TITLE -->
+      <div class="slide active" data-index="0">
+        <div class="slide-content" style="text-align: center">
+          <span class="badge badge-red" style="margin-bottom: 1rem"
+            ><i class="fas fa-rocket"></i> No code • Just concepts</span
+          >
+          <h1 style="font-size: 3.5rem">
+            <span class="accent-green"
+              ><i class="fas fa-globe"></i> Introduction</span
+            >
+            to <span class="accent-red"><i class="fas fa-code"></i> Web</span>
+            <span class="accent-green">Development</span>
+          </h1>
+          <p style="font-size: 1.4rem; color: #333333">
+            <i class="fas fa-user-graduate" style="color: #2e7d32"></i> Absolute
+            beginners — Zero experience needed
+          </p>
+          <hr style="width: 100px; margin: 1.5rem auto" />
+          <p>
+            <i class="fas fa-globe" style="color: #d32f2f"></i> What is the web?
+            How does it work? What tools do pros use?
+          </p>
+          <div
+            style="
+              margin-top: 1.5rem;
+              font-size: 1.1rem;
+              color: #2e7d32;
+              font-weight: 600;
+            "
+          >
+            <i class="fas fa-bolt"></i> SportTechies Innovation Academy · SIA
+            <i class="fas fa-bolt"></i>
+          </div>
+          <div style="margin-top: 0.5rem; color: #555; font-size: 0.9rem">
+            <i class="fas fa-lightbulb" style="color: #d32f2f"></i> Innovation •
+            Technology • Future Skills
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 2 - What is the Web? -->
+      <div class="slide" data-index="1">
+        <div class="slide-content">
+          <h2><i class="fas fa-globe-americas"></i> What is the Web?</h2>
+          <p>
+            The <strong>World Wide Web</strong> is a collection of pages you
+            view in a browser.
+          </p>
+          <ul>
+            <li>
+              <i class="fas fa-file-alt"></i> Pages contain text, images,
+              videos, and clickable links.
+            </li>
+            <li>
+              <i class="fas fa-arrows-alt-h"></i> You jump from page to page by
+              clicking (surfing the web).
+            </li>
+            <li>
+              <i class="fas fa-book"></i> Think of it like a giant interactive
+              digital book.
+            </li>
+          </ul>
+          <div class="note">
+            <i class="fas fa-lightbulb"></i>
+            <strong>Web vs Internet:</strong> Internet = roads & infrastructure.
+            Web = cars & content you see.
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 3 - Browser -->
+      <div class="slide" data-index="2">
+        <div class="slide-content">
+          <h2><i class="fas fa-compass"></i> What is a Browser?</h2>
+          <p>
+            A browser is an application that
+            <strong>displays web pages</strong>.
+          </p>
+          <ul>
+            <li>
+              <i class="fas fa-search"></i> Type a web address → browser
+              requests the page → shows it to you.
+            </li>
+            <li>
+              <i class="fas fa-history"></i> It also remembers history,
+              bookmarks, and protects your privacy.
+            </li>
+          </ul>
+          <h3><i class="fas fa-star"></i> Popular browsers</h3>
+          <div class="tech-grid">
+            <div class="tech-card green-border">
+              <i class="fab fa-chrome"></i> Chrome
+            </div>
+            <div class="tech-card black-border">
+              <i class="fab fa-edge"></i> Edge
+            </div>
+            <div class="tech-card"><i class="fab fa-firefox"></i> Firefox</div>
+            <div class="tech-card green-border">
+              <i class="fab fa-safari"></i> Safari
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 4 - Website vs Web App -->
+      <div class="slide" data-index="3">
+        <div class="slide-content">
+          <h2>
+            <i class="fas fa-file-alt"></i> Website vs
+            <i class="fas fa-mobile-alt"></i> Web App
+          </h2>
+          <table>
+            <thead>
+              <tr>
+                <th><i class="fas fa-file"></i> Website</th>
+                <th><i class="fas fa-cogs"></i> Web App</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>You mostly read or watch</td>
+                <td>You can DO things (interact)</td>
+              </tr>
+              <tr>
+                <td>Example: news article, blog, restaurant menu</td>
+                <td>Example: Gmail, Facebook, Google Maps</td>
+              </tr>
+              <tr>
+                <td>Usually no login needed</td>
+                <td>Often requires login or stores your data</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="note-red">
+            <i class="fas fa-info-circle"></i> YouTube is mostly a website to
+            watch, but when you like, comment, it acts like a web app.
+            Boundaries can be blurry!
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 5 - Frontend & Backend -->
+      <div class="slide" data-index="4">
+        <div class="slide-content">
+          <h2><i class="fas fa-layer-group"></i> Frontend vs Backend</h2>
+          <div class="tech-grid">
+            <div class="tech-card green-border">
+              <i class="fas fa-paint-brush"></i> <strong>Frontend</strong
+              ><br />What you see & click<br />Runs in your browser
+            </div>
+            <div class="tech-card">
+              <i class="fas fa-server"></i> <strong>Backend</strong><br />Hidden
+              server & database<br />Processes data & logic
+            </div>
+          </div>
+          <h3><i class="fas fa-utensils"></i> Restaurant Analogy (easy!)</h3>
+          <ul>
+            <li>
+              <i class="fas fa-chair"></i>
+              <strong>Frontend = Dining room</strong> (menu, table, waiter
+              taking order)
+            </li>
+            <li>
+              <i class="fas fa-kitchen-set"></i>
+              <strong>Backend = Kitchen + storage</strong> (chef, fridge,
+              ingredients, recipes)
+            </li>
+            <li>
+              <i class="fas fa-user-tie"></i>
+              <strong>Fullstack developer</strong> = can work as waiter AND cook
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- SLIDE 6 - Frontend Tech -->
+      <div class="slide" data-index="5">
+        <div class="slide-content">
+          <h2><i class="fas fa-laptop-code"></i> Frontend Technologies</h2>
+          <p>These three languages are the heart of every website:</p>
+          <table>
+            <tr>
+              <th><i class="fas fa-cog"></i> Technology</th>
+              <th><i class="fas fa-tasks"></i> Job (one sentence)</th>
+            </tr>
+            <tr>
+              <td>HTML</td>
+              <td>
+                Structure – "this is a heading, this is a paragraph, this is a
+                button"
+              </td>
+            </tr>
+            <tr>
+              <td>CSS</td>
+              <td>
+                Style – "make it red, center the image, add a cool shadow"
+              </td>
+            </tr>
+            <tr>
+              <td>JavaScript</td>
+              <td>
+                Interactivity – "when clicked, show an alert" or "change content
+                live"
+              </td>
+            </tr>
+          </table>
+          <p>
+            <i class="fas fa-star" style="color: #d32f2f"></i> Every modern
+            website uses at least HTML + CSS. JavaScript adds the magic.
+          </p>
+        </div>
+      </div>
+
+      <!-- SLIDE 7 - Backend -->
+      <div class="slide" data-index="6">
+        <div class="slide-content">
+          <h2><i class="fas fa-server"></i> Backend Technologies (examples)</h2>
+          <p>
+            These live on <strong>servers</strong> (remote computers) and do the
+            heavy lifting.
+          </p>
+          <div class="tech-grid">
+            <div class="tech-card green-border">
+              <i class="fas fa-code"></i> <strong>Languages</strong
+              ><br />Node.js, Python, PHP, Java, C#
+            </div>
+            <div class="tech-card black-border">
+              <i class="fas fa-cubes"></i> <strong>Frameworks</strong
+              ><br />Express, Django, Laravel, Spring Boot<br /><span
+                class="badge"
+                >pre-built toolkits</span
+              >
+            </div>
+            <div class="tech-card">
+              <i class="fas fa-database"></i> <strong>Databases</strong
+              ><br />MySQL, PostgreSQL, MongoDB<br /><span class="badge-red"
+                >store & organize data (like a digital fridge)</span
+              >
+            </div>
+          </div>
+          <p>
+            <i class="fas fa-pencil-alt" style="color: #d32f2f"></i> Don't
+            memorize these names. Just know that backend has many options.
+          </p>
+        </div>
+      </div>
+
+      <!-- SLIDE 8 - Fullstack -->
+      <div class="slide" data-index="7">
+        <div class="slide-content">
+          <h2>
+            <i class="fas fa-user-tie"></i> What is a Fullstack Developer?
+          </h2>
+          <ul>
+            <li>
+              <i class="fas fa-check-circle"></i> Works on
+              <strong>both frontend and backend</strong> parts of a web app.
+            </li>
+            <li>
+              <i class="fas fa-check-circle"></i> Can build a complete website
+              from scratch (visual + database + logic).
+            </li>
+            <li>
+              <i class="fas fa-check-circle"></i> Understands how the dining
+              room AND the kitchen operate together.
+            </li>
+            <li>
+              <i class="fas fa-check-circle"></i> Fullstack = flexible and
+              valuable in tech teams.
+            </li>
+          </ul>
+          <div class="note">
+            <i class="fas fa-star"></i> Many developers specialize in one area.
+            Fullstack developers know enough to connect everything.
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 9 - Request Flow -->
+      <div class="slide" data-index="8">
+        <div class="slide-content">
+          <h2><i class="fas fa-exchange-alt"></i> Simple Web Request Flow</h2>
+          <ol>
+            <li>
+              <i class="fas fa-mouse-pointer"></i> You click a link or type a
+              website address (e.g., sporttechies.com or runnermkt.com)
+            </li>
+            <li>
+              <i class="fas fa-paper-plane"></i> Your browser sends a
+              <strong>request</strong> across the internet to a server.
+            </li>
+            <li>
+              <i class="fas fa-reply"></i> The server processes the request and
+              sends back a <strong>response</strong> (the webpage).
+            </li>
+            <li>
+              <i class="fas fa-desktop"></i> Your browser renders the page on
+              your screen.
+            </li>
+          </ol>
+          <div class="tech-grid" style="grid-template-columns: 1fr 1fr">
+            <div class="tech-card green-border">
+              <i class="fas fa-user-graduate"></i> You → Browser → Internet
+            </div>
+            <div class="tech-card">
+              <i class="fas fa-server"></i> Server → Response → Display
+            </div>
+          </div>
+          <p>
+            <i class="fas fa-pizza-slice" style="color: #d32f2f"></i> Analogy:
+            Ordering pizza — you call (request), kitchen makes it, delivery
+            brings it (response).
+          </p>
+        </div>
+      </div>
+
+      <!-- SLIDE 10 - Tools -->
+      <div class="slide" data-index="9">
+        <div class="slide-content">
+          <h2><i class="fas fa-tools"></i> Tools for Web Development</h2>
+          <ul>
+            <li>
+              <i class="fas fa-globe"></i> <strong>A browser</strong> (Chrome,
+              Edge, Firefox) — you already have one!
+            </li>
+            <li>
+              <i class="fas fa-code"></i> <strong>Code editor</strong> – where
+              developers write code. We'll use <strong>VS Code</strong> (free,
+              powerful).
+            </li>
+            <li>
+              <i class="fas fa-folder"></i> A simple folder on your computer to
+              save projects.
+            </li>
+          </ul>
+          <p>
+            No terminal or complicated installs yet. Just understanding the
+            environment.
+          </p>
+          <div class="note-red">
+            <i class="fas fa-check-circle"></i> VS Code is like a supercharged
+            Notepad with colors and helpful tools.
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 11 - Installation -->
+      <div class="slide" data-index="10">
+        <div class="slide-content">
+          <h2><i class="fas fa-download"></i> Getting Ready</h2>
+          <ul>
+            <li>
+              <i class="fas fa-check-circle"></i>
+              <strong>1. Browser check</strong> – open Chrome/Edge, visit
+              google.com (works? perfect).
+            </li>
+            <li>
+              <i class="fas fa-check-circle"></i>
+              <strong>2. Download VS Code</strong>: Go to
+              <strong>code.visualstudio.com</strong> → Download for Windows/Mac
+              → Install like any app.
+            </li>
+            <li>
+              <i class="fas fa-check-circle"></i>
+              <strong>3. Create a folder</strong> on your desktop named
+              <code>my-web-journey</code> (we'll use next class).
+            </li>
+          </ul>
+          <div
+            style="
+              margin-top: 1rem;
+              background: #e8f5e9;
+              padding: 1rem;
+              border-radius: 20px;
+              border-left: 4px solid #2e7d32;
+            "
+          >
+            <i class="fas fa-bullseye" style="color: #2e7d32"></i> After
+            install: open VS Code, drag your folder into it, and create a file
+            called <strong>hello.html</strong> (no code yet, just get
+            comfortable).
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 12 - Summary -->
+      <div class="slide" data-index="11">
+        <div class="slide-content">
+          <h2><i class="fas fa-list-check"></i> Today's Summary</h2>
+          <ul>
+            <li>
+              <i class="fas fa-check"></i> Web vs Browser → how they work
+              together
+            </li>
+            <li>
+              <i class="fas fa-check"></i> Website vs Web App (static vs
+              interactive)
+            </li>
+            <li>
+              <i class="fas fa-check"></i> Frontend (visible) & Backend (hidden
+              engine)
+            </li>
+            <li>
+              <i class="fas fa-check"></i> Main technologies: HTML, CSS,
+              JavaScript (frontend); Node, Python, Databases (backend)
+            </li>
+            <li><i class="fas fa-check"></i> Fullstack = both sides</li>
+            <li><i class="fas fa-check"></i> Simple request/response cycle</li>
+            <li><i class="fas fa-check"></i> Tools: Browser + VS Code</li>
+          </ul>
+          <hr />
+          <h3>
+            <i class="fas fa-arrow-right"></i> Next Session: First Real HTML
+          </h3>
+          <p>
+            We'll write our first lines of HTML — build a simple "about me"
+            page. No stress, just fun!
+          </p>
+          <div
+            class="note"
+            style="border-left-color: #d32f2f; background: #ffebee"
+          >
+            <i class="fas fa-trophy" style="color: #d32f2f"></i> You've taken
+            your first step into web development. Be proud! From
+            <strong>SportTechies Innovation Academy</strong>
+            <i class="fas fa-heart" style="color: #d32f2f"></i
+            ><i class="fas fa-leaf" style="color: #2e7d32"></i
+            ><i class="fas fa-circle" style="color: #1a1a1a"></i>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 13 - Quiz -->
+      <div class="slide" data-index="12">
+        <div class="slide-content">
+          <h2><i class="fas fa-brain"></i> Quick Recap Quiz</h2>
+          <ol>
+            <li>
+              <i class="fas fa-question-circle"></i> True or False: The web is
+              the same as the internet. <strong>(False)</strong>
+            </li>
+            <li>
+              <i class="fas fa-question-circle"></i> Which part does the user
+              see: Frontend or Backend? <strong>(Frontend)</strong>
+            </li>
+            <li>
+              <i class="fas fa-question-circle"></i> Name three browsers:
+              <strong>(Chrome, Firefox, Edge, Safari...)</strong>
+            </li>
+            <li>
+              <i class="fas fa-question-circle"></i> Is Gmail a website or web
+              app? <strong>(Web app)</strong>
+            </li>
+            <li>
+              <i class="fas fa-question-circle"></i> What does HTML control?
+              <strong>(Structure of a page)</strong>
+            </li>
+            <li>
+              <i class="fas fa-question-circle"></i> What does a fullstack
+              developer do? <strong>(Works on frontend + backend)</strong>
+            </li>
+          </ol>
+          <p style="margin-top: 1.5rem">
+            <i class="fas fa-celebration" style="color: #d32f2f"></i> Great job!
+            You now understand the map of the web.
+          </p>
+          <div
+            style="
+              margin-top: 1rem;
+              background: #1a1a1a;
+              padding: 0.6rem 1rem;
+              border-radius: 30px;
+              display: inline-block;
+              color: white;
+              font-weight: 600;
+            "
+          >
+            <i class="fas fa-hashtag"></i> FutureDevs
+            <i
+              class="fas fa-circle"
+              style="color: #d32f2f; font-size: 0.5rem; margin: 0 0.3rem"
+            ></i>
+            SIA
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-nav">
+      <button id="prevBtn" disabled>
+        <i class="fas fa-arrow-left"></i> Previous
+      </button>
+      <span class="slide-counter"
+        ><i class="fas fa-sliders-h"></i>
+        <span id="slideCounter">Slide 1 / 13</span></span
+      >
+      <button id="nextBtn">Next <i class="fas fa-arrow-right"></i></button>
+    </div>
+
+    <script>
+      const slides = document.querySelectorAll(".slide");
+      const prevBtn = document.getElementById("prevBtn");
+      const nextBtn = document.getElementById("nextBtn");
+      const counterSpan = document.getElementById("slideCounter");
+      let currentIdx = 0;
+      const totalSlides = slides.length;
+
+      function updateSlides() {
+        slides.forEach((slide, idx) => {
+          if (idx === currentIdx) {
+            slide.classList.add("active");
+          } else {
+            slide.classList.remove("active");
+          }
+        });
+        counterSpan.innerText = `Slide ${currentIdx + 1} / ${totalSlides}`;
+        prevBtn.disabled = currentIdx === 0;
+        nextBtn.disabled = currentIdx === totalSlides - 1;
+      }
+
+      function nextSlide() {
+        if (currentIdx < totalSlides - 1) {
+          currentIdx++;
+          updateSlides();
+        }
+      }
+
+      function prevSlide() {
+        if (currentIdx > 0) {
+          currentIdx--;
+          updateSlides();
+        }
+      }
+
+      nextBtn.addEventListener("click", nextSlide);
+      prevBtn.addEventListener("click", prevSlide);
+
+      window.addEventListener("keydown", (e) => {
+        if (e.key === "ArrowRight") {
+          nextSlide();
+          e.preventDefault();
+        } else if (e.key === "ArrowLeft") {
+          prevSlide();
+          e.preventDefault();
+        }
+      });
+
+      updateSlides();
+    </script>
+  </body>
+</html>
